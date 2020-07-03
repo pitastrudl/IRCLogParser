@@ -39,12 +39,12 @@ nicksAndColors = []
 
 with codecs.open(sourcefile, encoding='utf-8') as f:
     for line in f:
-        # encode greater/lowerthan signs
+        #encode greater/lowerthan signs
         line = re.sub(r'<', '&lt;', line)
         line = re.sub(r'>', '&gt;', line)
 
 
-        # Find the nick
+        #Find the nick and color it
         m = re.search('&lt;(.+?)&gt;', line)
         if m:
             found = m.group(1)
@@ -56,11 +56,10 @@ with codecs.open(sourcefile, encoding='utf-8') as f:
                     hexhtml = "#" + hexcolor
                     auxiliaryList.append(word)
                     nicksAndColors.append([hexhtml, word])
-            # color nicks
-            for pairs in nicksAndColors:
+            for pairs in nicksAndColors: # color nicks
                 line = re.sub("&lt;" + pairs[1] + "&gt;",
                               '<span color="' + pairs[0] + '"><b>&lt;' + pairs[1] + "&gt;</b></span>", line)
-        else:  # (?<=\] )<[\S]+ #color if line is not a message?
+        else: #color if line is not a message?
             linkRegex = r'(?<=\] )&lt[\S]+'
             linkFound = re.search(linkRegex, line)
             if not linkFound:
@@ -79,8 +78,8 @@ with codecs.open(sourcefile, encoding='utf-8') as f:
                 fooundl = linkFound.group(0)
                 line = re.sub(linkRegex, '<a href="' + fooundl + '">' + fooundl + '</a>', line)
 
+        # Add color to whole line
         line = '<div style="color:#d9d9d9">' + line + '</div>' + "\n"
-        #line = line.rstrip() + "</br>" + "\n"
 
         file.write(line)
 
