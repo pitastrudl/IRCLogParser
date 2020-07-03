@@ -8,10 +8,6 @@ import base64
 # for the color nicks
 import hashlib
 
-import numpy as np
-import matplotlib.pyplot as plt
-import matplotlib
-
 filename = "testfile.html"
 sourcefile = "/home/arun/file.txt"
 cssline = " \
@@ -32,13 +28,6 @@ a { \
     color: cornflowerblue\
 }\
 </style>"
-
-# def line_prepender(filename, line):
-#     with open(filename, 'r+') as f:
-#         content = f.read()
-#         f.seek(0, 0)
-#         f.write(line.rstrip('\r\n') + '\n' + content)
-
 
 file = open(filename, "w", encoding='utf-8')
 
@@ -95,7 +84,6 @@ f.close()
 # prepend styling
 file.seek(0, 0)  # Move the cursor to top line
 file.write('\n')
-# file.seek(0, 0)# Add a new blank line
 file.write(cssline)
 
 file.close()
