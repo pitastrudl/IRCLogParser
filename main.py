@@ -58,7 +58,7 @@ with codecs.open(sourcefile, encoding='utf-8') as f:
                     nicksAndColors.append([hexhtml, word])
             for pairs in nicksAndColors: # color nicks
                 line = re.sub("&lt;" + pairs[1] + "&gt;",
-                              '<span color="' + pairs[0] + '"><b>&lt;' + pairs[1] + "&gt;</b></span>", line)
+                              '<font color="' + pairs[0] + '"><b>&lt;' + pairs[1] + "&gt;</b></font>", line)
         else: #color if line is not a message?
             linkRegex = r'(?<=\] )&lt[\S]+'
             linkFound = re.search(linkRegex, line)
