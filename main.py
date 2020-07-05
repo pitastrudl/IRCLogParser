@@ -32,7 +32,7 @@ a { \
 </style>"
 
 file = open(filename, "w", encoding='utf-8')
-
+buffer= ""
 nicks = []
 auxiliaryList = []
 nicksAndColors = []
@@ -81,8 +81,9 @@ with codecs.open(sourcefile, encoding='utf-8') as f:
         # Add color to whole line
         line = '<div style="color:#d9d9d9">' + line + '</div>' + "\n"
 
-        file.write(line)
+        buffer= buffer + line
 
+file.write(buffer)
 f.close()
 
 # prepend styling
